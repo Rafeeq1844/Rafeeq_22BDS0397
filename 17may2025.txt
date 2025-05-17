@@ -1,0 +1,68 @@
+show databases;
+create database vit;
+use vit;
+create table student(
+s_id int,
+full_name varchar(34),
+marks int,
+subject varchar(40)
+);
+
+INSERT INTO student  VALUES
+(1, 'Aarav Sharma', 85, 'Mathematics'),
+(2, 'Ishita Verma', 92, 'Science'),
+(3, 'Rohan Mehta', 76, 'English'),
+(4, 'Sneha Kapoor', 88, 'History'),
+(5, 'Kabir Nair', 90, 'Mathematics'),
+(6, 'Tanya Singh', 79, 'Science')
+alter table student add semester int;
+select * from student;
+desc student;
+ 
+
+select * from student;
+CREATE TABLE mysql_admin (
+    admin_id INT,
+    admin_name VARCHAR(50),
+    role VARCHAR(30),
+    experience_years INT
+);
+
+
+INSERT INTO mysql_admin  VALUES
+(1, 'Ravi Kumar', 'DBA', 5),
+(2, 'Anjali Mehta', 'Security Admin', 4),
+(3, 'Suresh Iyer', 'Backup Admin', 6),
+(4, 'Priya Desai', 'Performance Tuner', 7),
+(5, 'Neeraj Gupta', 'Replication Admin', 3),
+(6, 'Kavita Shah', 'DBA', 8),
+(7, 'Manoj Yadav', 'Security Admin', 2),
+(8, 'Divya Rao', 'Backup Admin', 5),
+(9, 'Amit Joshi', 'Performance Tuner', 6),
+(10, 'Sneha Roy', 'Replication Admin', 4);
+select * from mysql_admin;
+CREATE TABLE course_details (
+    course_id INT,
+    course_name VARCHAR(50),
+    instructor VARCHAR(50),
+    credits INT
+);
+
+
+INSERT INTO course_details VALUES
+(101, 'Database Systems', 'Dr. A. Sharma', 4),
+(102, 'Data Structures', 'Prof. K. Mehta', 3),
+(103, 'Operating Systems', 'Dr. R. Iyer', 4),
+(104, 'Computer Networks', 'Prof. S. Verma', 3),
+(105, 'Machine Learning', 'Dr. T. Desai', 4),
+(106, 'Web Development', 'Ms. N. Rao', 2),
+(107, 'Artificial Intelligence', 'Dr. M. Gupta', 4),
+(108, 'Software Engineering', 'Prof. B. Singh', 3),
+(109, 'Cyber Security', 'Dr. L. Joshi', 3),
+(110, 'Cloud Computing', 'Prof. P. Roy', 4);
+select * from course_details;
+update table course_details set credit=34 where course_id=102;
+
+
+show tables;
+
