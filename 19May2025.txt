@@ -1,0 +1,71 @@
+#delete ,drop and truncate
+#Drop (DDL Command) Whole defination-Completely droping the databases ,table or column
+show databases;
+drop database rafeeq;#its completely dropping entire databases
+use vit;
+show tables;
+drop table cse;#We are not able to comeback
+desc course_details;
+alter table course_details drop column credits;
+drop database vit;
+#delete It is used to delete a particular table or rows (we can commit or rollback the trancation)
+set SQL_SAFE_UPDATES = 0;
+use vit;
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    department VARCHAR(50),
+    salary DECIMAL(10, 2),
+    join_date DATE
+);
+INSERT INTO employees (name, department, salary, join_date) VALUES
+('Alice Johnson', 'HR', 55000.00, '2021-03-15'),
+('Bob Smith', 'Engineering', 75000.00, '2020-06-01'),
+('Charlie Lee', 'Marketing', 62000.00, '2022-01-20'),
+('Diana Kim', 'Engineering', 77000.00, '2019-11-30'),
+('Ethan Patel', 'Finance', 58000.00, '2023-02-10');
+delete from employees;
+delete from employees where salary <=70000;
+select * from employees;
+delete from employees where department ='Engineering';
+#Truncate Even we use commit or rollback it will not comeback (similar to drop's permant delete feature but structure will be there)
+
+truncate table employees;
+show tables;
+desc employees;
+select * from employees;
+use vit;
+create table cse(
+id int ,
+name varchar(34));
+start transaction;
+insert into cse values(1001,'Jayanth');
+savepoint al1;
+insert into cse values(1002,'Praveen');
+savepoint al2;
+delete from cse where id =1002;
+select * from cse;
+rollback to al2;
+select * from cse;
+insert into cse values(1003,'Rafeeq');
+delete from cse where id=1003;
+commit ;#We are not able to rollback
+select name,department as dept_name from employees;
+desc employees;
+#OPERATORS Like ,between ,not between ,in ,not in
+#OPERATORS (Logical and compar)
+select * from employees;
+select name as emp_name,department from employees where salary >60000;
+select * from student;
+select full_name,subject from student where marks !=90;
+select full_name as stud_name,subject  from student where marks <=80;
+show tables;
+select concat(full_name,'-',marks) from student where s_id not in (2,5);
+
+select * from employees where department ='HR' AND salary >=50000;
+select * from employees where department in('HR','Engineering') AND salary <=50000;
+select * from employees where (department ='Engineering' OR department='Marketing') AND (salary <=500000 AND salary >=80000);
+select name from employees where salary not in (77000);
+select full_name as name ,marks from student where subject in ('Mathematics','English');
+select * from employees where id % 2 = 0 and (department = 'Engineering' or department='Engineering' )
+order by salary desc;
