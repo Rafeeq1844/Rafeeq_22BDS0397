@@ -1,0 +1,79 @@
+create database Tuesday;
+use tuesday;
+create table category(
+c_id int primary key,
+c_name varchar(45),
+c_details varchar(53)
+);
+insert into category values(101,'electronic','abcdefh');
+insert into category values(102,'furniture','abcdefhfgegh');
+select * from category;
+drop table products;
+CREATE TABLE products (
+    p_id INT PRIMARY KEY,
+    p_name VARCHAR(45),
+    p_details VARCHAR(67),
+    c_id INT,
+    FOREIGN KEY (c_id) REFERENCES category(c_id) on delete cascade
+);
+desc products;
+insert into products values(501,'Samsung s23','12GB',101);
+select * from products;
+delete from category where c_id=101;
+
+
+desc products;
+
+
+CREATE TABLE Persons (
+    PersonID int primary key,
+    LastName varchar(50),
+    FirstName varchar(50),
+    Age int
+);
+INSERT INTO Persons (PersonID, LastName, FirstName, Age) VALUES
+(1, 'Hansen', 'Ola', 30),
+(2, 'Svendson', 'Tove', 23),
+(3, 'Pettersen', 'Kari', 20);
+drop table Orders;
+CREATE TABLE Orders (
+    OrderID int ,
+    OrderNumber int ,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID) on  update cascade
+    );
+
+INSERT INTO Orders (OrderID, OrderNumber, PersonID) VALUES
+(101, 5001, 1),
+(102, 5002, 2),
+(103, 5003, 3);
+
+UPDATE Persons SET PersonID = 10 WHERE PersonID = 1;
+SELECT * FROM Orders;
+create table company(
+company_id int primary key not null,
+company_name varchar(35) unique,
+company_location varchar(45) );
+show tables;
+select * from orders;
+alter table orders drop index PersonID;
+select * from orders;
+insert into company value (12,"Mohammed","chungom"),
+(14,"Rafeeq","Alappuzha");
+delete from company where company_id=12;
+alter table company drop primary key;
+show tables;
+desc products;
+alter table products
+drop foreign key p_id;
+alter table products add constraint p_id foreign key (p_id) 
+references orders(order_id);
+create table employees(
+id int primary key check(id >10),
+name varchar(34),
+age int default 25,
+department varchar(45) default 'General'
+);
+insert into employees values(15,'Rafeeq',34,'Finance'),(35,'Shaji',35,'Computer'); 
+insert into employees values(1,'Yam',34,'Finance');#Check constraint employee id
