@@ -1,0 +1,68 @@
+show databases;
+use vit;
+show tables;
+select * from employees;
+select * from employees where salary between 62000 and 80000;
+#values on lower and upper are included
+select * from employees where id not between 3 and 5;
+#for not between lower and upper values are not included
+select * from employees where salary not between 600000 and 90000
+and id  not in(1,2,3,5);
+select * from employees where join_date between  '2021-03-15' and 
+'2025-01-20';
+select min(salary) from employees where id >2;
+select count(salary) from employees where salary >70000;
+select round(avg(salary),2) from employees;
+select sum(salary) from employees where id not between 2 and 5;
+desc employees;
+create table employees2 (id int primary key auto_increment,
+name varchar(53),department varchar(53),salary decimal(10,2),
+join_date date);
+insert into  employees2 (name, department, salary, join_date)
+values ('Alice Johnson', 'HR', 55000.00, '2021-03-15');
+insert into employees2 (name, department, salary, join_date) 
+values
+('Bob Smith', 'Finance', 62000.00, '2020-07-10'),
+('Carol White', 'Engineering', 75000.00, '2019-11-20'),
+('David Brown', 'Engineering', 80000.00, '2022-01-05'),
+('Eva Green', 'Marketing', 50000.00, '2023-04-01'),
+('Frank Black', 'HR', 57000.00, '2021-08-25'),
+('Grace Lee', 'Sales', 61000.00, '2022-06-18'),
+('Henry Young', 'IT', 69000.00, '2020-03-30');
+
+show tables from vit;
+#UNION
+select * from employees;
+select * from employees2;
+select distinct(department) from employees;
+select department from employees 
+union all
+select department from employees2
+order by department;
+
+select name from employees 
+where department='Engineering' 
+union 
+select name from employees 
+where department='Engineering';
+select  id ,name,department ,
+case 
+	when salary >60000  then 'The salary is good'
+    when salary >90000 then 'The salary is excellent'
+    else 'The salary is fine'
+end
+as salary_condition
+from employees;
+select name,department from employees 
+order by salary desc;
+select * from employees;
+select id,name from employees 
+order by salary asc,join_date desc;
+select * from employees where name like '_a';
+select * from employees where name like '__a%';
+create view view_name as select id,name from employees where id 
+not in(1,3,5);
+create or replace view new_view_name as select id ,name from employees 
+where id between 1 and 4;
+create view hr as select * from employees where department='HR';
+select * from view_name;
